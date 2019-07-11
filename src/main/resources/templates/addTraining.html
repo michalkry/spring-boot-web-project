@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/training/save}" th:object="${training}" method="post">
+<div class="form-group">
+    <label for="exerciseName">Exercise name</label>
+    <input type="text" th:field="*{exercise}" class="form-control" id="exerciseName">
+</div>
+<div class="form-group">
+    <label for="numbersOfSets">Numbers of sets</label>
+    <input type="number" th:field="*{sets}" class="form-control" id="numbersOfSets">
+</div>
+<div class="form-group">
+    <label for="numbersOfReps">Numbers of reps</label>
+    <input type="number" th:field="*{reps}" class="form-control" id="numbersOfReps">
+</div>
+<div class="form-group">
+    <label for="tempo">Tempo</label>
+    <input type="number" th:field="*{tempo}" class="form-control" id="tempo">
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+</html>
