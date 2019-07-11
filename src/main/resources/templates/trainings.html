@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Trainings</title>
+</head>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th> Exercise name </th>
+        <th> numbers of sets </th>
+        <th> numbers of reps </th>
+        <th> tempo </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${trainings.empty}">
+        <td colspan="2"> No Trainings Available </td>
+    </tr>
+    <tr th:each="training : ${trainings}">
+        <td><span th:text="${training.exercise}"> Training </span></td>
+        <td><span th:text="${training.sets}"> Athlete </span></td>
+        <td><span th:text="${training.reps}"> Athlete </span></td>
+        <td><span th:text="${training.tempo}"> Athlete </span></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
