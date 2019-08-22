@@ -4,20 +4,28 @@ package com.example.demospringbootwebproject.training;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@RequestMapping("/training")
 @Controller
+@RequestMapping("/training")
 public class TrainingController {
 
+    private TrainingRepository trainingRepository;
+
     @Autowired
-    private TrainingService trainingService;
+    public TrainingController(TrainingRepository trainingRepository) {
+        this.trainingRepository = trainingRepository;
+    }
+
 
     @GetMapping("/all")
     public String getTraining(Model model){
-        List<Training> trainigs = trainingService.getTraining();
+        List<Training> trainigs = trainingRepository.findAll();
         model.addAttribute("trainings", trainigs);
 
         return "trainings";
@@ -31,8 +39,8 @@ public class TrainingController {
     @RequestMapping(path = "/save", method = RequestMethod.POST)
     public String save(@ModelAttribute Training training, Model model){
 
-        trainingService.saveExercise(training);
-        List<Training> trainigs = trainingService.getTraining();
+        trainingRepository.save(training);
+        List<Training> trainigs = trainingRepository.findAll();
         model.addAttribute("trainings", trainigs);
 
         return "trainings";
