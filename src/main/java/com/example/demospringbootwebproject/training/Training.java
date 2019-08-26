@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -23,16 +21,11 @@ public class Training {
     @GeneratedValue(strategy = GenerationType.AUTO) //nie musimy ręcznie ustawiać ID, tylko bedzie automatycznie to robic
     private Long id;
 
-    private String exercise;
-    private Integer sets;
-    private Integer reps;
-    private Integer tempo;
-    private Integer rest;
+    private String typeOfTraining;
 
-    public Training(String exercise, Integer sets, Integer reps, Integer tempo) {
-        this.exercise = exercise;
-        this.sets = sets;
-        this.reps = reps;
-        this.tempo = tempo;
+    @OneToMany(mappedBy = "training", fetch = FetchType.LAZY)
+    private List<Exercise> exercises;
+
+
     }
-}
+
